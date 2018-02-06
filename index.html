@@ -2,28 +2,44 @@
 <head>
 
 <link rel="stylesheet" type="text/css" href="./node_modules/bulma/css/bulma.css">
+
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
 </head>
 
 <body>
-  <div id="app">
-    <div class="notification is-primary">
-      <button class="delete"></button>
-      {{ message }}
+
+
+  <section class="hero is-primary">
+  <div id="app" class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        File Transfer
+      </h1>
     </div>
   </div>
+</section>
+
+  <div class="box has-text-centered">
+
+  <a class="button is-medium is-primary">Invite Peer</a>
+
+  <p><br><br>This is a secure app to transfer files from peer to peer.</p>
+
+  </div>
+
 
 
   <script>
   var app = new Vue({
     el: '#app',
     data: {
-      message: 'Hello Info Tech!!!!'
+      message: 'File Transfer'
     }
   })
-
   </script>
+
+
 
 </body>
 </html>
