@@ -9,32 +9,53 @@
 
 <body>
 
-
+  <div id="app">
   <section class="hero is-primary">
-  <div id="app" class="hero-body">
+  <div class="hero-body">
     <div class="container">
       <h1 class="title">
-        File Transfer
+        {{ message }}
       </h1>
     </div>
   </div>
 </section>
 
-  <div class="container has-text-centered">
+  <div v-if="!room_id" class="container has-text-centered">
 
-  <br><br><br><a class="button is-medium is-primary">Invite Peer</a>
+  <br><br><br><a v-on:click="invite"
+  class="button is-medium is-primary">Invite Peer</a>
 
   <p><br><br>This is a secure app to transfer files from peer to peer.</p>
 
   </div>
 
+  <div v-if="room_id" class="container has-text-centered">
+
+  <p>Waiting on peer</p>
+
+  </div>
+
+</div>
 
 
   <script>
   var app = new Vue({
     el: '#app',
     data: {
-      message: 'File Transfer'
+      message: 'File Transfer',
+      room_id: null
+    },
+    methods: {
+      invite: function(event) {
+        this.room_id=Math.random().toString();
+        const url=`${window.location}rooms/${this.room_id}`;
+        console.log(url);
+        const body= encodeURI(`Hello,\n Name would like to send you a file.\n\n${url}`);
+        event.srcElement.href=`mailto:user@example.com?subject=&body=${body}`;
+        console.log(body)
+        console.log(event.srcElement.href);
+        //href="mailto:user@example.com?subject=MyEmailSubject&body=MyEmailBody" alert("hello");
+      }
     }
   })
   </script>
