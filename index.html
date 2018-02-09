@@ -1,8 +1,8 @@
 <html>
+
 <head>
 
 <link rel="stylesheet" type="text/css" href="./node_modules/bulma/css/bulma.css">
-
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
 </head>
@@ -21,23 +21,25 @@
 </section>
 
   <div v-if="!room_id" class="container has-text-centered">
-
+  <!-- Button -->
   <br><br><br><a v-on:click="invite"
   class="button is-medium is-primary">Invite Peer</a>
 
+  <!-- product copy -->
   <p><br><br>This is a secure app to transfer files from peer to peer.</p>
+  <p><br>There is NO third party and NO security risk!</p>
+  <p><br>Click the button to send an email invitation to the file recipient!</p>
 
   </div>
 
   <div v-if="room_id" class="container has-text-centered">
-
+  <!-- Text to show after room id is generated -->
   <p>Waiting on peer</p>
-
   </div>
 
 </div>
 
-
+<!-- Vue app stuff -->
   <script>
   var app = new Vue({
     el: '#app',
@@ -47,14 +49,14 @@
     },
     methods: {
       invite: function(event) {
-        this.room_id=Math.random().toString();
-        const url=`${window.location}rooms/${this.room_id}`;
-        console.log(url);
-        const body= encodeURI(`Hello,\n Name would like to send you a file.\n\n${url}`);
-        event.srcElement.href=`mailto:user@example.com?subject=&body=${body}`;
-        console.log(body)
-        console.log(event.srcElement.href);
-        //href="mailto:user@example.com?subject=MyEmailSubject&body=MyEmailBody" alert("hello");
+        this.room_id = Math.random().toString();
+        const url =`Join transfer: ${window.location}rooms/${this.room_id}`;
+        //console.log(url);
+        const body = encodeURI(`Hello,\n\n I would like to send you a file using File Transfer, a secure website for peer-to-peer file transfers. Please click the invite link below to complete the transfer!\n\n${url}\n\nThank you!`);
+        const subject = "File Transfer Request";
+        event.srcElement.href=`mailto:user@example.com?subject=${subject}&body=${body}`;
+        //console.log(body)
+        //console.log(event.srcElement.href);
       }
     }
   })
