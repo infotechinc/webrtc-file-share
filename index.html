@@ -4,6 +4,7 @@
 
 <link rel="stylesheet" type="text/css" href="./node_modules/bulma/css/bulma.css">
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 
 </head>
 
@@ -26,21 +27,21 @@
   class="button is-medium is-primary">Invite Peer</a>
 
   <!-- product copy -->
-
-
-  <span class="icon is-large has-text-primary">
-    <i class="fas fa-spinner fa-pulse"></i>
-  </span>
   <p><br><br>This is a secure app to transfer files from peer to peer.</p>
   <p><br>There is NO third party and NO security risk!</p>
   <p><br>Click the button to send an email invitation to the file recipient!</p>
 
   </div>
 
+  <!-- Stuff to show after room id is generated -->
   <div v-if="room_id" class="container has-text-centered">
-  <!-- Text to show after room id is generated -->
-  <p>Waiting on peer</p>
 
+  <p><br><br><br>Waiting on peer to respond!<br><br><br></p>
+
+  <!-- Spinner icon -->
+  <span class="icon is-large has-text-primary">
+    <i class="fas fa-spinner fa-3x fa-pulse"></i>
+  </span>
 
   </div>
 
