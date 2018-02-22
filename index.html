@@ -5,6 +5,7 @@
 <link rel="stylesheet" type="text/css" href="./node_modules/bulma/css/bulma.css">
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<script src="https://simplewebrtc.com/latest-v2.js"></script>
 
 </head>
 
@@ -50,25 +51,72 @@
 <!-- Vue app stuff -->
   <script>
   var app = new Vue({
-    el: '#app',
-    data: {
-      message: 'File Transfer',
-      room_id: null
+  el: "#app",
+  data: {
+    peer: null,
+    peerIsReady: null,
+    webrtc: null,
+    message: "File Transfer",
+    room_id: window.location.pathname.startsWith("/rooms/")
+      ? window.location.pathname.replace("/rooms/", "")
+      : null
+  },
+
+  created: function() {
+    if (this.room_id) this.initWebRtc(false);
+  },
+
+  methods: {
+    invite: function(event) {
+      this.room_id = Math.random().toString();
+      const url = `Join transfer: ${window.location}rooms/${this.room_id}`;
+      //console.log(url);
+      const body = encodeURI(
+        `Hello,\n\n I would like to send you a file using File Transfer, a secure website for peer-to-peer file transfers. Please click the invite link below to complete the transfer!\n\n${url}\n\nThank you!`
+      );
+      const subject = "File Transfer Request";
+      event.srcElement.href = `mailto:user@example.com?subject=${subject}&body=${body}`;
+      window.history.pushState({}, "", `rooms/${this.room_id}`);
+      // create our webrtc connection
+      this.initWebRtc(true);
     },
-    methods: {
-      invite: function(event) {
-        this.room_id = Math.random().toString();
-        const url =`Join transfer: ${window.location}rooms/${this.room_id}`;
-        //console.log(url);
-        const body = encodeURI(`Hello,\n\n I would like to send you a file using File Transfer, a secure website for peer-to-peer file transfers. Please click the invite link below to complete the transfer!\n\n${url}\n\nThank you!`);
-        const subject = "File Transfer Request";
-        event.srcElement.href=`mailto:user@example.com?subject=${subject}&body=${body}`;
-        //console.log(body)
-        //console.log(event.srcElement.href);
-      }
+    initWebRtc: function(createRoom) {
+      console.log("created");
+      this.webrtc = new SimpleWebRTC({
+        // we don't do video
+        localVideoEl: "",
+        remoteVideosEl: "",
+        // dont ask for camera access
+        autoRequestMedia: false,
+        // dont negotiate media
+        receiveMedia: {
+          offerToReceiveAudio: false,
+          offerToReceiveVideo: false
+        }
+      });
+      console.log(this.webrtc); // called when a peer is created
+      this.webrtc.on("createdPeer", peer => {
+        //arrow functions
+        console.log("Created peer was called", peer);
+        this.peer = peer;
+        this.peer.pc.on("iceConnectionStateChange", event => {
+          const state = peer.pc.iceConnectionState;
+          this.peerIsReady = state == "connected" || state == "completed";
+          console.log("iceConnectionStateChange", state);
+        });
+      });
+      if (createRoom)
+        this.webrtc.createRoom(this.room_id, (err, name) => {
+          console.log("create room", err, name);
+        }); //callback methods
+      else
+        this.webrtc.joinRoom(this.room_id, (err, name) => {
+          console.log("join room", err, name);
+        }); //callback methods
     }
-  })
-  </script>
+  }
+});
+</script>
 
 
 
