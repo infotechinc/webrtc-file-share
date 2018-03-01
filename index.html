@@ -47,27 +47,31 @@
   </div>
 
   <!-- File upload page to show when peer is ready (Hide previous)-->
-  <div v-if="peerIsReady" class="content has-text-centered">
+  <section class="section">
+    <div v-if="peerIsReady" class="content has-text-centered">
 
-    <h2><br><br><br>Connection complete!<br><br></h2>
-    <p>Your peer has connected! Now choose the file you would like to transfer.<br><br></p>
-    <input type = "file">
+      <h2><br><br><br>Connection complete!<br><br></h2>
+      <p>Your peer has connected! Now choose the file you would like to transfer.<br><br></p>
+      <input type = "file"><br><br><br>
+      <!-- Progress bar...figure out how to adjust width -->
+      <progress class="progress is-primary" value="30" max="100">30%</progress>
 
-    <!-- Fancy (weird) styling -->
+      <!-- Fancy (weird) styling -->
 
-    <!-- <label class="file-label">
-    <input class="file-input" type="file" name="resume">
-    <span class="file-cta">
-      <span class="file-icon">
-        <i class="fas fa-upload"></i>
+      <!-- <label class="file-label">
+      <input class="file-input" type="file" name="resume">
+      <span class="file-cta">
+        <span class="file-icon">
+          <i class="fas fa-upload"></i>
+        </span>
+        <span class="file-label">
+          Choose a file…
+        </span>
       </span>
-      <span class="file-label">
-        Choose a file…
-      </span>
-    </span>
-  </label> -->
+    </label> -->
 
-  </div>
+    </div>
+  </section>
 
 </div>
 
