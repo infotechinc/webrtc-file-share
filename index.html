@@ -54,8 +54,10 @@
       <p>Your peer has connected! Now choose the file you would like to transfer.<br><br></p>
       <input type = "file" @change = "onFileChange"><br><br><br>
       <!-- Progress bar...figure out how to adjust width of bar or padding -->
-      <progress class="progress is-primary" value="30" max="100">30%</progress>
-
+      <div v-if = "sentFile">
+        <p>{{ sentFile.name }}</p>
+        <progress class="progress is-primary" v-bind:value="sentFile.bytesSent" v-bind:max="sentFile.size"></progress>
+      </div>
       <!-- Fancy (weird) styling -->
 
       <!-- <label class="file-label">
@@ -87,7 +89,7 @@
     room_id: window.location.pathname.startsWith("/rooms/")
       ? window.location.pathname.replace("/rooms/", "")
       : null,
-    sentFile: null
+    sentFile: { name: null, bytesSent: null, size: null }
   },
 
   created: function() {
@@ -144,7 +146,14 @@
     },
     onFileChange: function(event) {
       console.log(event);
-      this.peer.sendFile(event.srcElement.files[0]);
+      const sender = this.peer.sendFile(event.srcElement.files[0]);
+      this.sentFile.name = event.srcElement.files[0].name;
+      this.sentFile.bytesSent = 0;
+      this.sentFile.size = event.srcElement.files[0].size;
+      sender.on("progress", bytesSent => {
+        this.sentFile.bytesSent = bytesSent;
+        console.log(bytesSent);
+      });
     }
   }
 });
