@@ -52,18 +52,9 @@
 
       <h2><br><br><br>Connection complete!<br><br></h2>
       <p>Your peer has connected! Now choose the file you would like to transfer.<br><br></p>
-      <input type = "file" @change = "onFileChange"><br><br><br>
-      <!-- Progress bar...figure out how to adjust width of bar or padding -->
-      <div v-for="sentFile in sentFiles">
-        <div>
-          <p>{{ sentFile.name }}</p>
-          <progress class="progress is-primary" v-bind:value="sentFile.bytesSent" v-bind:max="sentFile.size"></progress>
-        </div>
-      </div>
-      <!-- Fancy (weird) styling -->
-
-      <!-- <label class="file-label">
-      <input class="file-input" type="file" name="resume">
+      <!-- <input type = "file" @change = "onFileChange"><br><br><br> -->
+      <label class="file-label content has-text-centered">
+      <input class="file-input" type="file" name="resume" @ change = "onFileChange"><br><br><br>
       <span class="file-cta">
         <span class="file-icon">
           <i class="fas fa-upload"></i>
@@ -72,7 +63,18 @@
           Choose a file…
         </span>
       </span>
-    </label> -->
+    </label>
+    
+      <!-- Progress bar...figure out how to adjust width of bar or padding -->
+      <div v-for="sentFile in sentFiles">
+        <div>
+          <p>{{ sentFile.name }}</p>
+          <progress class="progress is-primary" v-bind:value="sentFile.bytesSent" v-bind:max="sentFile.size"></progress>
+        </div>
+      </div>
+
+
+
 
     </div>
   </section>
