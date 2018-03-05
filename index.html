@@ -64,7 +64,7 @@
         </span>
       </span>
     </label>
-    
+
       <!-- Progress bar...figure out how to adjust width of bar or padding -->
       <div v-for="sentFile in sentFiles">
         <div>
@@ -110,7 +110,7 @@
         `Hello,\n\n I would like to send you a file using File Transfer, a secure website for peer-to-peer file transfers. Please click the invite link below to complete the transfer!\n\n${url}\n\nThank you!`
       );
       const subject = "File Transfer Request";
-      event.srcElement.href = `mailto:user@example.com?subject=${subject}&body=${body}`;
+      event.target.href = `mailto:user@example.com?subject=${subject}&body=${body}`;
       window.history.pushState({}, "", `rooms/${this.room_id}`);
       // create our webrtc connection
       this.initWebRtc(true);
@@ -163,13 +163,13 @@
       return peer;
     },
     onFileChange: function(event) {
-      if (event.srcElement.files.length == 0) return;
+      if (event.target.files.length == 0) return;
       console.log(event);
-      const sender = this.peer.sendFile(event.srcElement.files[0]);
+      const sender = this.peer.sendFile(event.target.files[0]);
       this.sentFiles.unshift({
-        name: event.srcElement.files[0].name,
+        name: event.target.files[0].name,
         bytesSent: 0,
-        size: event.srcElement.files[0].size
+        size: event.target.files[0].size
       });
       sender.on("progress", bytesSent => {
         this.sentFiles[0].bytesSent = bytesSent;
