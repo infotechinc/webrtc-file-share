@@ -15,7 +15,7 @@
   <section class="hero is-primary">
   <div class="hero-body">
     <div class="container">
-      <h1 class="title">
+      <h1 class="title is-size-1">
         {{ message }}
       </h1>
     </div>
@@ -23,21 +23,25 @@
 </section>
 
   <div v-if="!room_id && !peerIsReady" class="container has-text-centered">
-  <!-- Button -->
+  <!-- Invite button -->
   <br><br><br><a v-on:click="invite"
-  class="button is-medium is-primary">Invite Peer</a>
+  class="button is-medium is-link has-text-weight-semibold">Click to invite a friend!</a>
 
-  <!-- product copy -->
-  <p><br><br>This is a secure app to transfer files from peer to peer.</p>
-  <p><br>There is NO third party and NO security risk!</p>
-  <p><br>Click the button to send an email invitation to the file recipient!</p>
-
+  <!-- Product copy -->
+  <div class="menu has-text-centered has-text-grey">
+    <p class="has-text-weight-semibold"><br><br>Why File Friend?</p>
+    <ul class='menu-list'>
+      <li>It's secure!</li>
+      <li>Peer-to-Peer transfers</li>
+      <li>NO third party</li>
+      <li>NO security risk!</li>
+    </ul>
   </div>
 
   <!-- Loading page to show after room id is generated (Hide previous)-->
   <div v-if="room_id && !peerIsReady" class="container has-text-centered">
 
-  <p><br><br><br>Waiting on peer to respond!<br><br><br></p>
+  <p><br><br><br>Waiting for your friend to connect!<br><br><br></p>
 
   <!-- Spinner icon -->
   <span class="icon is-large has-text-primary">
@@ -52,7 +56,7 @@
       <div class="content has-text-centered">
 
         <h2><br>Connection complete!<br><br></h2>
-        <p>Your peer has connected! Now choose the file you would like to transfer.<br><br></p>
+        <p>Your friend has connected! Now choose the file you would like to transfer.<br><br></p>
 
         <div class="file is-centered">
           <!-- File Input Button -->
@@ -109,7 +113,7 @@
     peer: null,
     peerIsReady: null,
     webrtc: null,
-    message: "File Transfer",
+    message: "File Friend",
     room_id: window.location.pathname.startsWith("/rooms/")
       ? window.location.pathname.replace("/rooms/", "")
       : null,
