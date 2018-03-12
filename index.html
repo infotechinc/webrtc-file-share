@@ -54,24 +54,25 @@
         <h2><br>Connection complete!<br><br></h2>
         <p>Your peer has connected! Now choose the file you would like to transfer.<br><br></p>
 
-        <!-- <input type = "file" @change = "onFileChange"><br><br><br> -->
-        <!-- Figure out how to center this -->
-        <label class="file-label">
-        <input class="file-input" type="file" name="resume" @change = "onFileChange"><br><br><br>
-        <span class="file-cta">
-          <span class="file-icon">
-            <i class="fas fa-upload"></i>
+        <div class="file is-centered">
+          <!-- File Input Button -->
+          <label class="file-label">
+          <input class="file-input" type="file" name="resume" @change = "onFileChange"><br><br><br>
+          <span class="file-cta">
+            <span class="file-icon">
+              <i class="fas fa-upload"></i>
+            </span>
+            <span class="file-label">
+              Choose a file…
+            </span>
           </span>
-          <span class="file-label">
-            Choose a file…
-          </span>
-        </span>
-      </label>
+        </label>
+      </div>
 
     </div>
 
-    <div class="columns has-text-centered">
-      <div class="column">
+    <div class="columns">
+      <div class="column is-half has-text-centered">
         <!-- To make the column colored: notification is-primary -->
        <h1><strong>Sent Files</strong></h1>
         <!-- Dynmaic progress bar -->
@@ -86,13 +87,14 @@
           </div>
         </div>
       </div>
-      <div class="column">
+      <div class="column is-half has-text-centered">
         <h1><strong>Received Files</strong></h1>
           <div v-for="receivedFile in receivedFiles">
             <a v-bind:download=receivedFile.name v-bind:href=receivedFile.file>{{ receivedFile.name }}</a>
           </div>
       </div>
     </div>
+
 
     </div>
   </section>
