@@ -73,7 +73,7 @@
     <div class="columns has-text-centered">
       <div class="column notification is-primary">
        <h1><strong>Sent Files</strong></h1>
-        <!-- Progress bar...figure out how to adjust width of bar or padding, possibly put checkbox -->
+        <!-- Dynmaic progress bar -->
         <div v-for="sentFile in sentFiles">
           <div>
             <p>{{ sentFile.name }}</p>
@@ -170,16 +170,8 @@
         });
         receiver.on("receivedFile", (file, metadata) => {
           console.log("receivedFile", file, metadata);
-          // Blob(644996) {size: 644996, type: ""}size: 644996type: ""__proto__: Blob
-          //           {size: 644996, name: "Avery_Tangled.jpg"}
-          // name
-          // :
-          // "Avery_Tangled.jpg"
-          // size
-          // :
-          // 644996
           this.receivedFiles.unshift({
-            //Puts latest file on top
+            //Unshift puts latest file on top
             name: metadata.name,
             bytesReceived: metadata.size,
             file: URL.createObjectURL(file)
