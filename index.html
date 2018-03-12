@@ -71,13 +71,18 @@
     </div>
 
     <div class="columns has-text-centered">
-      <div class="column notification is-primary">
+      <div class="column">
+        <!-- To make the column colored: notification is-primary -->
        <h1><strong>Sent Files</strong></h1>
         <!-- Dynmaic progress bar -->
         <div v-for="sentFile in sentFiles">
           <div>
-            <p>{{ sentFile.name }}</p>
-            <progress class="progress is-primary" v-bind:value="sentFile.bytesSent" v-bind:max="sentFile.size"></progress>
+            <!-- Show checkbox if file is fully sent -->
+            <p><span v-if="onSentFile" class="icon has-text-primary">
+              <i class="fas fa-check-square"></i>
+            </span>
+            {{ sentFile.name }}</p>
+            <progress v-if="!onSentFile" class="progress is-primary" v-bind:value="sentFile.bytesSent" v-bind:max="sentFile.size"></progress>
           </div>
         </div>
       </div>
@@ -107,7 +112,8 @@
       ? window.location.pathname.replace("/rooms/", "")
       : null,
     sentFiles: [],
-    receivedFiles: []
+    receivedFiles: [],
+    progress: null
   },
 
   created: function() {
@@ -194,12 +200,16 @@
         this.sentFiles[0].bytesSent = bytesSent;
         console.log(bytesSent);
       });
+    },
+    onSentFile: function(event) {
+      if (sentFiles[0].bytesSent == sentFile.size) {
+        progress = true;
+      } else {
+        return progress;
+      }
     }
   }
 });
 </script>
-
-
-
 </body>
 </html>
