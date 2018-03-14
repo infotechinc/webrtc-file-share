@@ -11,8 +11,9 @@
 
 <body>
 
+  <!-- Header/Title -->
   <div id="app">
-  <section class="hero is-primary">
+  <section class="hero is-primary is-bold">
   <div class="hero-body">
     <div class="container">
       <h1 class="title is-size-1">
@@ -22,27 +23,27 @@
   </div>
 </section>
 
+  <!-- First page -->
   <div v-if="!room_id && !peerIsReady" class="container has-text-centered">
   <!-- Invite button -->
-  <br><br><br><a v-on:click="invite"
-  class="button is-medium is-link has-text-weight-semibold">Click to invite a friend!</a>
+  <br><br><br><br><br><br><br><br>
+  <a v-on:click="invite" class="button is-medium is-link has-text-weight-semibold">Click to invite a friend!</a>
 
   <!-- Product copy -->
-  <div class="menu has-text-centered has-text-grey">
-    <p class="has-text-weight-semibold"><br><br>Why File Friend?</p>
+  <div class="menu has-text-centered has-text-grey"><br><br><br><br><br><br><br>
+    <p class="has-text-weight-semibold">Why File Friend?</p>
     <ul class='menu-list'>
-      <li>It's secure!</li>
-      <li>Peer-to-Peer transfers</li>
-      <li>NO third party</li>
-      <li>NO security risk!</li>
+      <li>We do secure, peer-to-peer transfers!</li>
+      <li>There is NO third party and NO security risk!</li>
     </ul>
   </div>
 </div>
+<!-- End first page -->
 
   <!-- Loading page to show after room id is generated (Hide previous)-->
   <div v-if="room_id && !peerIsReady" class="container has-text-centered">
 
-  <p><br><br><br>Waiting for your friend to connect!<br><br><br></p>
+  <p class="has-text-weight-semibold"><br><br><br>Waiting for your friend to connect!<br><br><br></p>
 
   <!-- Spinner icon -->
   <span class="icon is-large has-text-primary">
@@ -134,7 +135,7 @@
       const url = `Join transfer: ${window.location}rooms/${this.room_id}`;
       //console.log(url);
       const body = encodeURI(
-        `Hello,\n\n I would like to send you a file using File Transfer, a secure website for peer-to-peer file transfers. Please click the invite link below to complete the transfer!\n\n${url}\n\nThank you!`
+        `Hello,\n\n I would like to send you a file using File Friend, a secure website for peer-to-peer file transfers. Please click the invite link below to complete the transfer!\n\n${url}\n\nThank you!`
       );
       const subject = "File Transfer Request";
       event.target.href = `mailto:user@example.com?subject=${subject}&body=${body}`;
