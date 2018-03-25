@@ -2,7 +2,11 @@
   "name": "webrtc-file-share",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://shadowing.infotechfl.com/river.ross/webrtc-file-share.git",
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "repository":
+    "https://shadowing.infotechfl.com/river.ross/webrtc-file-share.git",
   "author": "Kbarrera123 <kaylabarrera@ufl.edu>",
   "license": "",
   "dependencies": {
