@@ -9,8 +9,7 @@ var app = new Vue({
       ? window.location.pathname.replace("/rooms/", "")
       : null,
     sentFiles: [],
-    receivedFiles: [],
-    progress: null
+    receivedFiles: []
   },
 
   created: function() {
@@ -91,19 +90,17 @@ var app = new Vue({
       this.sentFiles.unshift({
         name: event.target.files[0].name,
         bytesSent: 0,
-        size: event.target.files[0].size
+        size: event.target.files[0].size,
+        complete: false
       });
       sender.on("progress", bytesSent => {
         this.sentFiles[0].bytesSent = bytesSent;
         console.log(bytesSent);
       });
-    },
-    onSentFile: function(event) {
-      if (sentFiles[0].bytesSent == sentFile.size) {
-        progress = true;
-      } else {
-        return progress;
-      }
+      sender.on("complete", () => {
+        this.sentFiles[0].complete = true;
+        console.log("complete");
+      });
     }
   }
 });

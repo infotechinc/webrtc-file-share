@@ -83,15 +83,15 @@
       <div class="column is-half has-text-centered">
         <!-- To make the column colored: notification is-primary -->
        <h1><strong>Sent Files</strong></h1>
-        <!-- Dynmaic progress bar -->
+        <!-- Dynamic progress bar -->
         <div v-for="sentFile in sentFiles">
           <div>
             <!-- Show checkbox if file is fully sent -->
-            <p><span v-if="onSentFile" class="icon has-text-primary">
+            <p><span v-if="sentFile.complete" class="icon has-text-primary">
               <i class="fas fa-check-square"></i>
             </span>
             {{ sentFile.name }}</p>
-            <progress v-if="!onSentFile" class="progress is-primary" v-bind:value="sentFile.bytesSent" v-bind:max="sentFile.size"></progress>
+            <progress v-if="!sentFile.complete" class="progress is-primary" v-bind:value="sentFile.bytesSent" v-bind:max="sentFile.size"></progress>
           </div>
         </div>
       </div>
