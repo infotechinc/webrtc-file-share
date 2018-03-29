@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html -d build/output --public-url /"
+    "build": "parcel build index.html -d build/output --public-url /",
+    "sync":
+      "aws s3 sync ./build/output s3://$BUCKET_NAME --delete --acl public-read"
   },
   "repository":
     "https://shadowing.infotechfl.com/river.ross/webrtc-file-share.git",
