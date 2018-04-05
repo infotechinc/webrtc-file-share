@@ -1,12 +1,15 @@
 {
   "name": "webrtc-file-share",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html -d build/output --public-url /",
     "sync":
-      "aws s3 sync ./build/output s3://$BUCKET_NAME --delete --acl public-read"
+      "aws s3 sync ./build/output s3://$BUCKET_NAME --delete --acl public-read",
+    "invalidate":
+      "aws cloudfront create-invalidation --distribution-id $CLOUD_FRONT_DISTRIBUTION_ID --paths /\\*",
+    "deploy": "yarn run build && yarn run sync && yarn run invalidate"
   },
   "repository":
     "https://shadowing.infotechfl.com/river.ross/webrtc-file-share.git",
