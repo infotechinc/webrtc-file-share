@@ -1,4 +1,5 @@
 import "./app-header.js";
+import "./landing-page.js";
 
 const template = `
 
@@ -6,22 +7,7 @@ const template = `
 
 <app-header v-bind:title=title></app-header>
 
-<!-- First page -->
-<div v-if="!room_id && !peerIsReady" class="container has-text-centered">
-<!-- Invite button -->
-<br><br><br><br><br><br><br><br>
-<a v-on:click="invite" class="button is-medium is-link has-text-weight-semibold">Click to invite a friend!</a>
-
-<!-- Product copy -->
-<div class="menu has-text-centered has-text-grey"><br><br><br><br><br><br><br>
-  <p class="has-text-weight-semibold">Why File Friend?</p>
-  <ul class='menu-list'>
-    <li>We do secure, peer-to-peer transfers!</li>
-    <li>There is NO third party and NO security risk!</li>
-  </ul>
-</div>
-</div>
-<!-- End first page -->
+<landing-page v-if="!room_id && !peerIsReady" v-bind:title=title></landing-page>
 
 <!-- Loading page to show after room id is generated (Hide previous)-->
 <div v-if="room_id && !peerIsReady" class="container has-text-centered">
@@ -113,17 +99,8 @@ Vue.component("application", {
   },
 
   methods: {
-    invite: function(event) {
-      this.room_id = Math.random().toString();
-      const url = `Join transfer: ${window.location}rooms/${this.room_id}`;
-      //console.log(url);
-      const body = encodeURI(
-        `Hello,\n\n I would like to send you a file using File Friend, a secure website for peer-to-peer file transfers. Please click the invite link below to complete the transfer!\n\n${url}\n\nThank you!`
-      );
-      const subject = "File Transfer Request";
-      event.target.href = `mailto:user@example.com?subject=${subject}&body=${body}`;
-      window.history.pushState({}, "", `rooms/${this.room_id}`);
-      // create our webrtc connection
+    invite: function(inviteData) {
+      this.room_id = inviteData.room_id;
       this.initWebRtc(true);
     },
     initWebRtc: function(createRoom) {
