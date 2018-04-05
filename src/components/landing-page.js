@@ -6,7 +6,7 @@ const template = `
 
 <!-- Product copy -->
 <div class="menu has-text-centered has-text-grey"><br><br><br><br><br><br><br>
-  <p class="has-text-weight-semibold">Why File Friend?</p>
+  <p class="has-text-weight-semibold">Why {{ title }}?</p>
   <ul class='menu-list'>
     <li>We do secure, peer-to-peer transfers!</li>
     <li>There is NO third party and NO security risk!</li>
