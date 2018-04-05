@@ -1,5 +1,6 @@
 import "./app-header.js";
 import "./landing-page.js";
+import "./loading-page.js";
 
 const template = `
 
@@ -7,20 +8,9 @@ const template = `
 
 <app-header v-bind:title=title></app-header>
 
-<landing-page v-if="!room_id && !peerIsReady" v-bind:title=title></landing-page>
+<landing-page v-if="!room_id && !peerIsReady" v-bind:title=title v-on:invite="invite"></landing-page>
 
-<!-- Loading page to show after room id is generated (Hide previous)-->
-<div v-if="room_id && !peerIsReady" class="container has-text-centered">
-
-<p class="is-size-5 has-text-weight-semibold"><br><br><br>Waiting for your friend to connect!<br><br><br></p>
-
-<!-- Spinner icon -->
-<span class="icon is-large has-text-primary">
-  <i class="fas fa-spinner fa-3x fa-pulse"></i>
-</span>
-
-</div>
-<!-- End loading page -->
+<loading-page v-if="room_id && !peerIsReady"></loading-page>
 
 <!-- File upload page to show when peer is ready (Hides previous)-->
 <section class="section">
