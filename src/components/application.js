@@ -1,15 +1,10 @@
+import "./app-header.js";
+
 const template = `
-<!-- Header/Title -->
+
 <div>
-<section class="hero is-primary is-bold">
-<div class="hero-body">
-  <div class="container">
-    <h1 class="title is-size-1">
-      {{ message }}
-    </h1>
-  </div>
-</div>
-</section>
+
+<app-header v-bind:title=title></app-header>
 
 <!-- First page -->
 <div v-if="!room_id && !peerIsReady" class="container has-text-centered">
@@ -104,7 +99,7 @@ Vue.component("application", {
       peer: null,
       peerIsReady: null,
       webrtc: null,
-      message: "File Friend",
+      title: "File Friend",
       room_id: window.location.pathname.startsWith("/rooms/")
         ? window.location.pathname.replace("/rooms/", "")
         : null,
