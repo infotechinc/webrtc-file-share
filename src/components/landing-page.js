@@ -20,7 +20,9 @@ Vue.component("landing-page", {
   props: ["title"],
   methods: {
     invite: function(event) {
-      const room_id = Math.random().toString();
+      const array = new Uint32Array(4);
+      window.crypto.getRandomValues(array);
+      const room_id = array.join("");
       const url = `Join transfer: ${window.location}rooms/${room_id}`;
       //console.log(url);
       const body = encodeURI(

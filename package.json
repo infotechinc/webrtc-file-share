@@ -1,10 +1,11 @@
 {
   "name": "webrtc-file-share",
   "version": "1.0.0",
-  "main": "index.html",
+  "main": "./src/index.js",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html -d build/output --public-url /",
+    "build":
+      "rm -rf build/output && parcel build index.html -d build/output --no-source-maps --out-file index --public-url /",
     "sync":
       "aws s3 sync ./build/output s3://$BUCKET_NAME --delete --acl public-read",
     "invalidate":
