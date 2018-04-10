@@ -31,7 +31,7 @@ Vue.component("landing-page", {
         }, a secure website for peer-to-peer file transfers. Please click the invite link below to complete the transfer!\n\n${url}\n\nThank you!`
       );
       const subject = "File Transfer Request";
-      event.target.href = `mailto:user@example.com?subject=${subject}&body=${body}`;
+      event.target.href = `mailto:?subject=${subject}&body=${body}`;
       window.history.pushState({}, "", `rooms/${room_id}`);
       // create our webrtc connection
 
