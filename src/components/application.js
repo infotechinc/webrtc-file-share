@@ -44,6 +44,18 @@ Vue.component("application", {
       this.initWebRtc(true);
     },
     initWebRtc: function(createRoom) {
+      fetch("***REMOVED***")
+        .then(response => {
+          return response.json();
+        })
+        .then(json => {
+          this._initWebRtc(createRoom, json.iceServers || []);
+        })
+        .catch(e => {
+          this._initWebRtc(createRoom, []);
+        });
+    },
+    _initWebRtc: function(createRoom, iceServers) {
       console.log("created");
       this.webrtc = new SimpleWebRTC({
         // we don't do video
@@ -55,8 +67,24 @@ Vue.component("application", {
         receiveMedia: {
           offerToReceiveAudio: false,
           offerToReceiveVideo: false
+        },
+        peerConnectionConfig: {
+          iceServers: iceServers
         }
       });
+      console.log("ice servers", iceServers);
+      if (iceServers.length)
+        this.webrtc.on("stunservers", args => {
+          // resets/overrides the config
+          this.webrtc.config.peerConnectionConfig.iceServers = iceServers;
+          console.log(this.webrtc.config.peerConnectionConfig.iceServers);
+        });
+      if (iceServers.length)
+        this.webrtc.on("turnservers", args => {
+          // appends to the config
+          this.webrtc.config.peerConnectionConfig.iceServers = iceServers;
+          console.log(this.webrtc.config.peerConnectionConfig.iceServers);
+        });
       console.log(this.webrtc); // called when a peer is created
       this.webrtc.on("createdPeer", peer => {
         //arrow functions
