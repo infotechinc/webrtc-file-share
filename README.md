@@ -1,6 +1,13 @@
 # File Friend
 
-File Friend is a web app that performs secure, peer-to-peer file transfers that do not pass through any third party.
+File Friend is a web app that performs secure, peer-to-peer file transfers in real time that are not stored by any third party. You can also use video chat while transferring files!
+
+## How Does it Work?
+
+1. Send an email invite to your friend that you would like to send a file to. (insert screenshot)
+2. Wait for them to connect by clicking the link in the email.
+3. Tell your browser to allow video and microphone access.
+4. Send and receive files!
 
 ## Getting Started
 
@@ -9,6 +16,11 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 This app requires knowledge of:
+
+* HTML/CSS
+* Javascript
+* Bulma
+* Vue.js
 
 ```
 Give examples
@@ -45,7 +57,7 @@ Add additional notes about how to deploy this on a live system
 
 ## Constraints
 
-Say which browsers it does and does not work in
+This app may have difficulty in certain browsers, and the speed and ability to transfer files may vary based on the quality of your network connection.
 
 ## Contributing
 
@@ -57,16 +69,15 @@ We originally used a private GitLab repo for versioning, then migrated the repos
 
 ## Authors
 
-* **Billie Thompson** - _Initial work_ - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* **Kayla Barrera** - _Software Engineer_ - [Github Profile](https://github.com/Kbarrera123)
+* **River Ross** - _Software Engineer & Mentor_
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under an Info Tech License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
+* Hat tip to anyone who's code was used (SimpleWebRTC)
 * Inspiration
 * etc
