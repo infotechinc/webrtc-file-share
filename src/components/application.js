@@ -13,7 +13,7 @@ const template = `
 
 <loading-page v-if="room_id && !peerIsReady"></loading-page>
 
-<file-upload-page v-if="peerIsReady" v-bind:sentFiles="sentFiles" v-bind:receivedFiles="receivedFiles" v-on:onFileChange="onFileChange"></file-upload-page>
+<file-upload-page v-show="peerIsReady" v-bind:sentFiles="sentFiles" v-bind:receivedFiles="receivedFiles" v-on:onFileChange="onFileChange"></file-upload-page>
 
 </div>
 `;
@@ -59,14 +59,14 @@ Vue.component("application", {
       console.log("created");
       this.webrtc = new SimpleWebRTC({
         // we don't do video
-        localVideoEl: "",
-        remoteVideosEl: "",
+        localVideoEl: "localVideo",
+        remoteVideosEl: "remoteVideos",
         // dont ask for camera access
-        autoRequestMedia: false,
+        autoRequestMedia: true,
         // dont negotiate media
         receiveMedia: {
-          offerToReceiveAudio: false,
-          offerToReceiveVideo: false
+          offerToReceiveAudio: true,
+          offerToReceiveVideo: true
         },
         peerConnectionConfig: {
           iceServers: iceServers
@@ -91,14 +91,19 @@ Vue.component("application", {
         console.log("Created peer was called", peer);
         this.peer = this.initPeer(peer);
       });
-      if (createRoom)
-        this.webrtc.createRoom(this.room_id, (err, name) => {
-          console.log("create room", err, name);
-        }); //callback methods
-      else
-        this.webrtc.joinRoom(this.room_id, (err, name) => {
-          console.log("join room", err, name);
-        }); //callback methods
+      this.webrtc.on("readyToCall", () => {
+        if (createRoom)
+          this.webrtc.createRoom(this.room_id, (err, name) => {
+            console.log("create room", err, name);
+          }); //callback methods
+        else
+          this.webrtc.joinRoom(this.room_id, (err, name) => {
+            console.log("join room", err, name);
+          }); //callback methods
+      });
+      this.webrtc.on("videoAdded", (video, peer) => {
+        video.controls = true;
+      });
     },
     initPeer: function(peer) {
       peer.pc.on("iceConnectionStateChange", event => {

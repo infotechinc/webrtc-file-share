@@ -1,5 +1,6 @@
 const template = `
-  <div>
+<div class="columns">
+  <div class="column">
     <div class="content has-text-centered">
 
       <h2><br>Connection complete!<br><br></h2>
@@ -44,7 +45,15 @@ const template = `
         </div>
     </div>
   </div>
+  </div>
 
+
+  <div class="column is-one-third">
+  <div style="position:relative">
+    <div id="remoteVideos"></div>
+    <video id="localVideo"></video>
+    </div>
+  </div>
 
   </div>
 `;
