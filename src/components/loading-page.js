@@ -1,5 +1,5 @@
 const template = `
-<div class="container has-text-centered">
+<div>
 
 <p class="is-size-5 has-text-weight-semibold"><br><br><br>Waiting for your friend to connect!<br><br><br></p>
 

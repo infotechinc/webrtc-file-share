@@ -5,17 +5,21 @@ import "./file-upload-page.js";
 
 const template = `
 
-<div>
+<section class="hero">
 
-<app-header v-bind:title=title></app-header>
+  <div class="hero-head">
+    <app-header v-bind:title=title></app-header>
+  </div>
 
-<landing-page v-if="!room_id && !peerIsReady" v-bind:title=title v-on:invite="invite"></landing-page>
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <landing-page v-if="!room_id && !peerIsReady" v-bind:title=title v-on:invite="invite"></landing-page>
+      <loading-page v-if="room_id && !peerIsReady"></loading-page>
+      <file-upload-page v-show="peerIsReady" v-bind:sentFiles="sentFiles" v-bind:receivedFiles="receivedFiles" v-on:onFileChange="onFileChange"></file-upload-page>
+    </div>
+  </div>
 
-<loading-page v-if="room_id && !peerIsReady"></loading-page>
-
-<file-upload-page v-show="peerIsReady" v-bind:sentFiles="sentFiles" v-bind:receivedFiles="receivedFiles" v-on:onFileChange="onFileChange"></file-upload-page>
-
-</div>
+</section>
 `;
 
 Vue.component("application", {

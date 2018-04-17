@@ -1,5 +1,6 @@
 const template = `
-<div class="container has-text-centered">
+
+<div>
 <!-- Invite button -->
 <br><br><br><br><br><br><br><br>
 <a v-on:click="invite" class="button is-medium is-link has-text-weight-semibold">Click to invite a friend!</a>
@@ -9,10 +10,11 @@ const template = `
   <p class="has-text-weight-semibold">Why {{ title }}?</p>
   <ul class='menu-list'>
     <li>We do secure, peer-to-peer transfers!</li>
-    <li>There is NO third party and NO security risk!</li>
+    <li>There is NO third party storage and NO security risk!</li>
   </ul>
 </div>
 </div>
+
 `;
 
 Vue.component("landing-page", {

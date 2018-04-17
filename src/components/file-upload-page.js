@@ -1,7 +1,6 @@
 const template = `
 <div class="columns">
   <div class="column">
-    <div class="content has-text-centered">
 
       <h2><br>Connection complete!<br><br></h2>
       <p>Your friend has connected! Now choose the file you would like to transfer.<br><br></p>
@@ -19,8 +18,6 @@ const template = `
           </span>
         </span>
       </label>
-    </div>
-
   </div>
 
   <div class="columns">
