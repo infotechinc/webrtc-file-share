@@ -9,8 +9,9 @@ const template = `
 <div class="menu has-text-centered has-text-grey"><br><br><br><br><br><br><br>
   <p class="has-text-weight-semibold">Why {{ title }}?</p>
   <ul class='menu-list'>
-    <li>We do secure, peer-to-peer transfers!</li>
-    <li>There is NO third party storage and NO security risk!</li>
+    <li>We perform secure, peer-to-peer transfers!</li>
+      <li>Your data is only transferred and never saved!</li>
+      <li>You can't breach what you don't have!</li>
   </ul>
 </div>
 </div>
