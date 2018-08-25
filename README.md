@@ -1,6 +1,8 @@
 # File Friend
 
-[File Friend](***REMOVED***) is a web app that performs secure, peer-to-peer file transfers in real time that are not stored by any third party. You can also use video chat while transferring files!
+[File Friend] is a web app that performs secure, peer-to-peer file transfers in real time that are not stored by any third party. You can also use video chat while transferring files!
+
+Want to try it out? Contact me at kaylabarrera2@gmail.com for an invite!
 
 [Click here](https://docs.google.com/presentation/d/131YzhAAn_Nh0gxDtZbyjUfITw6t5ZtIfuh0jDlxoLkw/edit?usp=sharing) for a presentation about File Friend.
 
