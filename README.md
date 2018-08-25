@@ -60,4 +60,4 @@ Please note that if you are rolling out an app like this for production and expe
 
 ## License
 
-This project is licensed under Info Tech, Inc. - see BLANK for more details.
+This project is licensed under Info Tech, Inc.
