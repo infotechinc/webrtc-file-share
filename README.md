@@ -51,9 +51,9 @@ This app may have difficulty in certain browsers such as Safari and on mobile de
 
 The **speed and ability to transfer files will vary** based on the quality of your **network connection.**
 
-## Warning
+## Twilio Warning
 
-Please note that if you are rolling out an app like this for production and expect a high volume of users, it could result in a large sum of money being charged to your account for the server you are using!
+Please note that running this application with a significant amount of traffic or users will be expensive due to how costly TURN servers are. Please review Twilio's TURN service bandwidth rates.
 
 ## Authors
 
