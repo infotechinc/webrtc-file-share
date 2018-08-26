@@ -3,6 +3,8 @@ import "./landing-page.js";
 import "./loading-page.js";
 import "./file-upload-page.js";
 
+const SimpleWebRTC = require("../simplewebrtc/latest-v3.js");
+
 const template = `
 
 <section class="hero">
