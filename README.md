@@ -57,9 +57,5 @@ Please note that if you are rolling out an app like this for production and expe
 
 ## Authors
 
-* **Kayla Barrera** - _Software Engineer_ - [Github Profile](https://github.com/Kbarrera123)
-* **River Ross** - _Software Engineer & Mentor, Info Tech_
-
-## License
-
-This project is licensed under Info Tech, Inc.
+* **Kayla Barrera**
+* **River Ross**
