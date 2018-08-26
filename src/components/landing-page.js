@@ -27,7 +27,6 @@ Vue.component("landing-page", {
       window.crypto.getRandomValues(array);
       const room_id = array.join("");
       const url = `Join transfer: ${window.location}rooms/${room_id}`;
-      //console.log(url);
       const body = encodeURI(
         `Hello,\n\n I would like to send you a file using ${
           this.title
@@ -36,7 +35,6 @@ Vue.component("landing-page", {
       const subject = "File Transfer Request";
       event.target.href = `mailto:?subject=${subject}&body=${body}`;
       window.history.pushState({}, "", `rooms/${room_id}`);
-      // create our webrtc connection
 
       this.$emit("invite", { room_id: room_id });
     }

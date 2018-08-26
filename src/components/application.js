@@ -62,12 +62,9 @@ Vue.component("application", {
     _initWebRtc: function(createRoom, iceServers) {
       console.log("created");
       this.webrtc = new SimpleWebRTC({
-        // we don't do video
         localVideoEl: "localVideo",
         remoteVideosEl: "remoteVideos",
-        // dont ask for camera access
         autoRequestMedia: true,
-        // dont negotiate media
         receiveMedia: {
           offerToReceiveAudio: true,
           offerToReceiveVideo: true
@@ -79,19 +76,16 @@ Vue.component("application", {
       console.log("ice servers", iceServers);
       if (iceServers.length)
         this.webrtc.on("stunservers", args => {
-          // resets/overrides the config
           this.webrtc.config.peerConnectionConfig.iceServers = iceServers;
           console.log(this.webrtc.config.peerConnectionConfig.iceServers);
         });
       if (iceServers.length)
         this.webrtc.on("turnservers", args => {
-          // appends to the config
           this.webrtc.config.peerConnectionConfig.iceServers = iceServers;
           console.log(this.webrtc.config.peerConnectionConfig.iceServers);
         });
-      console.log(this.webrtc); // called when a peer is created
+      console.log(this.webrtc);
       this.webrtc.on("createdPeer", peer => {
-        //arrow functions
         console.log("Created peer was called", peer);
         this.peer = this.initPeer(peer);
       });
@@ -99,11 +93,11 @@ Vue.component("application", {
         if (createRoom)
           this.webrtc.createRoom(this.room_id, (err, name) => {
             console.log("create room", err, name);
-          }); //callback methods
+          });
         else
           this.webrtc.joinRoom(this.room_id, (err, name) => {
             console.log("join room", err, name);
-          }); //callback methods
+          });
       });
       this.webrtc.on("videoAdded", (video, peer) => {
         video.controls = true;
@@ -123,7 +117,6 @@ Vue.component("application", {
         receiver.on("receivedFile", (file, metadata) => {
           console.log("receivedFile", file, metadata);
           this.receivedFiles.unshift({
-            //Unshift puts latest file on top
             name: metadata.name,
             bytesReceived: metadata.size,
             file: URL.createObjectURL(file)
