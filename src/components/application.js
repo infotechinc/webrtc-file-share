@@ -50,7 +50,7 @@ Vue.component("application", {
       this.initWebRtc(true);
     },
     initWebRtc: function(createRoom) {
-      fetch("***REMOVED***")
+      fetch(process.env.ICE_API_URL)
         .then(response => {
           return response.json();
         })
