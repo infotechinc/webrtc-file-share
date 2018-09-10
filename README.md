@@ -1,3 +1,5 @@
+Info Tech, Inc. sponsors a student shadowing program with the University of Florida. The program provides students with real life experience working on a software development project. This repository contains the results of Kayla Barrer's shadowing program project from the Spring of 2018. 
+
 # File Friend
 
 File Friend is a web app that performs secure, peer-to-peer file transfers in real time that are not stored by any third party. You can also use video chat while transferring files!
@@ -59,3 +61,5 @@ Please note that running this application with a significant amount of traffic o
 
 * **Kayla Barrera**
 * **River Ross**
+
+Owner: Info Tech, Inc.
